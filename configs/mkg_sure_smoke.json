@@ -1,0 +1,8 @@
+{
+  "data": {"input_mode": "dummy", "allow_oracle_visual_input": false},
+  "models": {"backend": "dummy", "embedding_name": "hash", "embedding_dim": 64},
+  "graph": {"seed_edges": 8, "beam_width": 5, "max_path_length": 2, "max_candidate_paths": 16, "utility_label_candidates": 8},
+  "selection": {"evidence_budget": 400, "max_selected_paths": 4},
+  "training": {"seed": 42, "stage1_epochs": 4, "stage2_epochs": 4, "hidden_dim": 64},
+  "runtime": {"run_id": "smoke", "artifacts_dir": "artifacts/mkg_sure", "dummy_examples": 12}
+}
