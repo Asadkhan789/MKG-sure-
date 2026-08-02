@@ -1,0 +1,25 @@
+Extract ONLY factual knowledge triplets that help answer the multiple-choice question.
+
+STRICT FORMAT:
+(subject, relation, object)
+
+Rules:
+- Use only information present in the evidence text.
+- Return one triplet per line.
+- Include intent, emotion, state, and dialogue implications when they are explicitly supported.
+- Prefer concise relations such as `invites`, `feels`, `wants`, `agrees_to`, `is_upset`, `is_excited`, `plans`, `asks`.
+- Do not explain your answer.
+- If you prefer JSON, you may return:
+  {{"triplets": [{{"subject": "...", "relation": "...", "object": "..."}}]}}
+- If the evidence is not useful, return `NO_TRIPLETS`.
+
+Question:
+{question}
+
+Answer options:
+{options}
+
+Evidence text:
+{evidence}
+
+Triplets:

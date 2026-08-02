@@ -1,0 +1,24 @@
+Answer the multiple-choice question using the subtitle context as the primary evidence stream and the graph evidence as the secondary evidence stream.
+
+Return JSON only:
+{{"answer_idx": <0-4>, "supporting_subtitle_doc_ids": ["..."], "supporting_triplets": ["..."], "confidence": <0.0-1.0>}}
+
+Rules:
+- Prefer subtitle-backed evidence for why, motive, and feeling questions.
+- Do not rely on graph evidence alone for motive or feeling questions when subtitle context is available.
+- Read subtitle chunks in chronological order and use later lines that reveal the motive, reaction, or resolution.
+- For where/when questions, prefer the most specific option that is directly supported; do not add posture, timing, or location details that are not explicit.
+- If a graph triplet is an inferred feeling or a quote attribution and it conflicts with the raw subtitles, trust the subtitles.
+- Only cite subtitle doc ids and triplets that appear below.
+
+Question:
+{question}
+
+Options:
+{options}
+
+Subtitle context:
+{subtitle_context}
+
+Graph evidence:
+{graph_evidence}

@@ -1,0 +1,31 @@
+Re-score all answer options against the evidence streams below and revise the draft answer only if the evidence supports a different option more strongly.
+
+Return JSON only:
+{{"answer_idx": <0-4>, "option_scores": {{"0": <0.0-1.0>, "1": <0.0-1.0>, "2": <0.0-1.0>, "3": <0.0-1.0>, "4": <0.0-1.0>}}, "supporting_subtitle_doc_ids": ["..."], "supporting_triplets": ["..."], "confidence": <0.0-1.0>}}
+
+Rules:
+- Subtitle context is the primary evidence stream.
+- If the graph evidence is bbox-only and subtitle context is available, do not let the bbox-only graph override the subtitles for motive or feeling questions.
+- Re-read subtitle chunks in time order before deciding.
+- For why/feeling questions, use the subtitle line that best explains the reaction or motivation, especially if it appears after the setup.
+- For where/when questions, reject any option that adds standing, sitting, exact timing, or other details not directly supported by the evidence.
+- If graph triplets are inferred feelings, long quote attributions, or conflict with the raw subtitles, downweight them.
+- Only cite subtitle doc ids and triplets that appear below.
+
+Question:
+{question}
+
+Options:
+{options}
+
+Draft answer index:
+{draft_answer}
+
+Risk flags:
+{risk_flags}
+
+Subtitle context:
+{subtitle_context}
+
+Graph evidence:
+{graph_evidence}

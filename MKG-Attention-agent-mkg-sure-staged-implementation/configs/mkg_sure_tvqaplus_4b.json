@@ -1,0 +1,59 @@
+{
+  "run_id": "mkg_sure_tvqaplus_4b",
+  "data": {
+    "annotations": "data/tvqa_plus_annotations_with_test/tvqa_plus_valid_preprocessed.json",
+    "subtitles": "data/tvqa_plus_subtitles.json",
+    "visual_concepts": "data/det_visual_concepts_hq.pickle",
+    "raw_video_dir": "data/tvqa/videos",
+    "precomputed_feature_dir": "data/features",
+    "input_mode": "auto"
+  },
+  "backbones": {
+    "reader_name": "Qwen/Qwen3-VL-4B-Instruct",
+    "extractor_name": "Qwen/Qwen3-VL-4B-Instruct",
+    "multimodal_embedding_name": "Qwen/Qwen3-VL-Embedding-2B",
+    "detector_name": "IDEA-Research/grounding-dino-base",
+    "dtype": "bfloat16",
+    "freeze_backbones": true
+  },
+  "localization": {
+    "top_b": 8,
+    "temporal_margin_seconds": 2.0,
+    "subtitle_weight": 0.5,
+    "visual_weight": 0.5
+  },
+  "paths": {
+    "seed_edges": 8,
+    "beam_width": 5,
+    "max_path_length": 2,
+    "max_candidates": 16,
+    "utility_label_candidates": 8
+  },
+  "selection": {
+    "evidence_budget": 1536,
+    "grounding_weight": 0.35,
+    "coverage_weight": 0.3,
+    "redundancy_weight": 0.25,
+    "minimum_gain": 0.0,
+    "anchor_threshold": 0.55
+  },
+  "training": {
+    "hidden_size": 512,
+    "dropout": 0.1,
+    "batch_size": 1,
+    "gradient_accumulation_steps": 8,
+    "learning_rate_stage1": 0.0002,
+    "learning_rate_stage2": 0.0001,
+    "gradient_checkpointing": true,
+    "use_cache": false
+  },
+  "sufficiency": {
+    "low_threshold": 0.35,
+    "high_threshold": 0.65,
+    "max_connecting_distance": 4,
+    "recovery_paths": 4
+  },
+  "artifacts": {
+    "root": "artifacts/mkg_sure"
+  }
+}

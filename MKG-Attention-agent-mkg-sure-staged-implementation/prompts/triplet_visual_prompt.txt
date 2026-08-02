@@ -1,0 +1,24 @@
+Extract ONLY visual knowledge triplets that help answer the multiple-choice question.
+
+STRICT FORMAT:
+(subject, relation, object)
+
+Rules:
+- Use only information present in the visual evidence text.
+- Return one triplet per line.
+- Focus on people, objects, actions, positions, and attributes.
+- If the visual evidence clearly suggests a state or emotion, you may include it, but avoid guessing.
+- If you prefer JSON, you may return:
+  {{"triplets": [{{"subject": "...", "relation": "...", "object": "..."}}]}}
+- If the evidence is not useful, return `NO_TRIPLETS`.
+
+Question:
+{question}
+
+Answer options:
+{options}
+
+Visual evidence:
+{evidence}
+
+Triplets:
