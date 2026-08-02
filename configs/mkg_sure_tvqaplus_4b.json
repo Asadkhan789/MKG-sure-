@@ -1,0 +1,33 @@
+{
+  "data": {
+    "annotations_train": "data/tvqa_plus_annotations/tvqa_plus_train.json",
+    "annotations_val": "data/tvqa_plus_annotations/tvqa_plus_val.json",
+    "annotations_test": "data/tvqa_plus_annotations_with_test/tvqa_plus_test_preprocessed_no_anno.json",
+    "subtitles": "data/tvqa_plus_subtitles.json",
+    "visual_concepts": "data/det_visual_concepts_hq.pickle",
+    "raw_video_dir": null,
+    "feature_dir": null,
+    "external_knowledge": null,
+    "input_mode": "auto",
+    "allow_oracle_visual_input": false
+  },
+  "models": {
+    "reader_name": "Qwen/Qwen3-VL-4B-Instruct",
+    "extractor_name": "Qwen/Qwen3-VL-4B-Instruct",
+    "embedding_name": "Qwen/Qwen3-VL-Embedding-2B",
+    "detector_name": "IDEA-Research/grounding-dino-base",
+    "backend": "transformers",
+    "dtype": "bfloat16",
+    "device": "auto",
+    "flash_attention_2": true,
+    "gradient_checkpointing": true,
+    "freeze_backbones": true,
+    "embedding_dim": 1024
+  },
+  "localization": {"top_b": 8, "temporal_margin_seconds": 2.0, "subtitle_weight": 0.55, "visual_weight": 0.45},
+  "graph": {"entity_threshold": 0.82, "seed_edges": 8, "beam_width": 5, "max_path_length": 2, "max_candidate_paths": 16, "utility_label_candidates": 8, "minimum_edge_confidence": 0.05},
+  "selection": {"evidence_budget": 900, "max_selected_paths": 4, "grounding_weight": 0.35, "coverage_weight": 0.35, "redundancy_weight": 0.25, "semantic_redundancy_weight": 0.5, "minimum_gain": 0.01, "anchor_threshold": 0.35},
+  "training": {"seed": 42, "stage1_epochs": 12, "stage2_epochs": 10, "learning_rate": 0.001, "weight_decay": 0.0001, "batch_size": 1, "gradient_accumulation_steps": 8, "utility_margin": 0.0, "pairwise_tie_margin": 0.03, "pointwise_weight": 1.0, "pairwise_weight": 0.5, "generation_weight": 1.0, "sufficiency_weight": 0.5, "hidden_dim": 256},
+  "sufficiency": {"low_threshold": 0.35, "high_threshold": 0.65, "max_connecting_distance": 4, "recovery_paths": 2, "temperature": 1.0, "support_threshold": 0.5},
+  "runtime": {"run_id": "tvqaplus_qwen3vl4b", "artifacts_dir": "artifacts/mkg_sure", "resume": true, "max_examples": null, "frames_per_window": 4, "dummy_examples": 12}
+}
